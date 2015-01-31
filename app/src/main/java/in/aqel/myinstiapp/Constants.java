@@ -9,4 +9,9 @@ public class Constants {
         "Krishna","Mahanadhi","Mandakini","Narmada","Pamba","Saraswathi","Sarayu" ,
         "Sindhu","Sharavati","Sabarmati","Tamraparani","Tapti"
     };
+
+    public static String[] departmentsShortForm = {
+        "AM", "AE", "AS", "BT",  "CE", "CH", "CS","CY","EC", "ED", "EE","EP", "HS", "MA", "ME", "MM",
+            "MS", "NA", "OE" , "PH"
+    };
 }
