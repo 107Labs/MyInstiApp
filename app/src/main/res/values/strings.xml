@@ -4,6 +4,7 @@
     <string name="app_name">MyInstiApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
     <string-array name="hostels">
         <item>Hostel</item>
         <item>Alakananda</item>
@@ -25,4 +26,7 @@
         <item>Tamraparani</item>
         <item>Tapti</item>
     </string-array>
+
+    <string name="title_activity_test">TestActivity</string>
+
 </resources>
