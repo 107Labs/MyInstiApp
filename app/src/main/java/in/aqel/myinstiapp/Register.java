@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -33,10 +34,22 @@ public class Register extends ActionBarActivity  {
     Boolean ValidRollNumber;
     Utils utils = new Utils();
     JSONParser jsonParser;
+    int loginStatus;
+    SharedPreferences spLogin;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        spLogin = getSharedPreferences("login", MODE_PRIVATE);
+        loginStatus = spLogin.getInt("loginStatus", 0);
+        if (loginStatus == 2){
+            intent = new Intent(Register.this, NewCourse.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        }
         setContentView(R.layout.activity_register);
         hostels = (Spinner) findViewById(R.id.spinner);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -119,6 +132,7 @@ public class Register extends ActionBarActivity  {
         String url;
         int status;
         ProgressDialog pDialog;
+        User user;
 
         @Override
         protected void onPreExecute() {
@@ -144,6 +158,19 @@ public class Register extends ActionBarActivity  {
             try {
                 Log.d("JSON", mainJSON.toString());
                 status = mainJSON.getInt("status");
+                if (status == 1){
+                    user = new User(Register.this);
+                    user.rollNumber = rollNumber;
+                    user.name = name;
+                    user.hostel = hostel;
+                    user.nick = nick;
+                    user.email = email;
+                    user.saveUser();
+                    SharedPreferences spLogin = getSharedPreferences("login", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = spLogin.edit();
+                    editor.putInt("loginStatus", 2);
+                    editor.commit();
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -156,8 +183,11 @@ public class Register extends ActionBarActivity  {
             super.onPostExecute(aVoid);
             pDialog.dismiss();
             if (status == 1){
-                Intent intent = new Intent(Register.this, NewCourse.class);
+                intent = new Intent(Register.this, NewCourse.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
+                System.exit(0);
             }
         }
     };
