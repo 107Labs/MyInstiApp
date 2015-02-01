@@ -26,6 +26,22 @@
         <item>Tamraparani</item>
         <item>Tapti</item>
     </string-array>
+    <string-array name="slots">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>Slot</item>
+    </string-array>
 
     <string name="title_activity_test">TestActivity</string>
 
