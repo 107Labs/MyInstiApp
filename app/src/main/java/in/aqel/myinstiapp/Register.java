@@ -2,6 +2,9 @@ package in.aqel.myinstiapp;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -13,22 +16,30 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Register extends ActionBarActivity  {
 
-    static final int REQUEST_CODE_PICK_ACCOUNT = 1000;
-    EditText etNick, etName, etEmail, etRollNumber;
+    EditText etEmail;
     Spinner hostels;
-    String rollNumber, nick, name;
+    String rollNumber, nick, name, hostel, email;
     Boolean ValidRollNumber;
     Utils utils = new Utils();
+    JSONParser jsonParser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         hostels = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.hostels, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hostels.setAdapter(adapter);
@@ -43,30 +54,41 @@ public class Register extends ActionBarActivity  {
             }
         }
         */
-        String email = accounts[0].name;
+        email = accounts[0].name;
         etEmail = (EditText) findViewById(R.id.email);
         etEmail.setText(email);
+
+
 
 
 
         (findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rollNumber = ((EditText) findViewById(R.id.roll_no)).getText().toString();
+                rollNumber = ((EditText) findViewById(R.id.roll_no)).getText().toString().toUpperCase();
+                name = ((EditText) findViewById(R.id.name)).getText().toString();
+                nick = ((EditText) findViewById(R.id.nick)).getText().toString();
+                hostel = hostels.getSelectedItem().toString();
                 ValidRollNumber = utils.RollNumberValidator(rollNumber);
-                Log.d("Roll Number", rollNumber);
-                if (ValidRollNumber){
-                    Toast.makeText(Register.this, "Valid Roll Number", Toast.LENGTH_SHORT);
-                    Log.d("Roll Number", "Correct");
-                } else {
-                    Toast.makeText(Register.this, "Invalid Roll Number", Toast.LENGTH_SHORT);
-                    Log.d("Roll Number", "Wrong");
 
+                if ( !rollNumber.isEmpty() && !name.isEmpty() && !nick.isEmpty() && !hostel.equals("Hostel")){
+                    if (ValidRollNumber){
+                        Log.d("Register", "Cool");
+                        new registerUser().execute();
+                    } else {
+                        Log.d("Register", "wrong roll number");
+                        Toast.makeText(Register.this, "Invalid Roll Number", Toast.LENGTH_SHORT);
+                    }
+                }else{
+                    Toast.makeText(Register.this, "Please fill all fields", Toast.LENGTH_SHORT);
                 }
+
             }
         });
 
     }
+
+
 
 
     @Override
@@ -92,5 +114,52 @@ public class Register extends ActionBarActivity  {
     }
 
 
+    public class registerUser extends AsyncTask<Void, Void, Void> {
+        JSONObject mainJSON;
+        String url;
+        int status;
+        ProgressDialog pDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(Register.this);
+            pDialog.setMessage("Loggin in");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... param) {
+            jsonParser = new JSONParser();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("hostel", hostel));
+            params.add(new BasicNameValuePair("roll_number", rollNumber));
+            params.add(new BasicNameValuePair("name", name));
+            params.add(new BasicNameValuePair("nick", nick));
+            params.add(new BasicNameValuePair("email", email));
+            JSONObject mainJSON =  jsonParser.makeHttpRequest("register.php", "POST", params, null);
+
+            try {
+                Log.d("JSON", mainJSON.toString());
+                status = mainJSON.getInt("status");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            pDialog.dismiss();
+            if (status == 1){
+                Intent intent = new Intent(Register.this, NewCourse.class);
+                startActivity(intent);
+            }
+        }
+    };
 
 }
