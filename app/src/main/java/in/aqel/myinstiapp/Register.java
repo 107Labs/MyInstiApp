@@ -2,6 +2,7 @@ package in.aqel.myinstiapp;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -64,7 +65,7 @@ public class Register extends ActionBarActivity  {
         (findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rollNumber = ((EditText) findViewById(R.id.roll_no)).getText().toString();
+                rollNumber = ((EditText) findViewById(R.id.roll_no)).getText().toString().toUpperCase();
                 name = ((EditText) findViewById(R.id.name)).getText().toString();
                 nick = ((EditText) findViewById(R.id.nick)).getText().toString();
                 hostel = hostels.getSelectedItem().toString();
@@ -117,7 +118,17 @@ public class Register extends ActionBarActivity  {
         JSONObject mainJSON;
         String url;
         int status;
+        ProgressDialog pDialog;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(Register.this);
+            pDialog.setMessage("Loggin in");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
 
         @Override
         protected Void doInBackground(Void... param) {
@@ -143,6 +154,7 @@ public class Register extends ActionBarActivity  {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            pDialog.dismiss();
             if (status == 1){
                 Intent intent = new Intent(Register.this, NewCourse.class);
                 startActivity(intent);

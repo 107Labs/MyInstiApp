@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="gap_register">20dp</dimen>
+    <dimen name="new_course_fontsize">18dp</dimen>
+    <dimen name="new_course_gap">20dp</dimen>
 </resources>
