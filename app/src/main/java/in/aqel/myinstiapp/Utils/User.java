@@ -1,4 +1,4 @@
-package in.aqel.myinstiapp;
+package in.aqel.myinstiapp.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,7 +12,11 @@ public class User  {
     }
 
     Context context;
-    String name, email, rollNumber, nick, hostel;
+    public String name;
+    public String email;
+    public String rollNumber;
+    public String nick;
+    public String hostel;
     SharedPreferences spUser;
 
     public void saveUser( ){

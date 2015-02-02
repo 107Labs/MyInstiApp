@@ -19,17 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="10dp"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Slot"
-                android:textSize="@dimen/new_course_fontsize"
-                />
+
 
 
             <Spinner
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spSlot" />
 
@@ -39,7 +35,7 @@
                 />
 
             <Spinner
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spIsTheory" />
 
@@ -48,32 +44,24 @@
                 android:layout_height="@dimen/new_course_gap"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Credits"
-                android:textSize="@dimen/new_course_fontsize"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="1"
+                android:hint="Credit"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/new_course_gap"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Course Title"
-                android:textSize="@dimen/new_course_fontsize"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Course Title"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -87,25 +75,41 @@
                 android:textSize="@dimen/new_course_fontsize"
                 />
 
-            <EditText
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                />
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:gravity="center"
+                android:padding="15dp"
+                >
+
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/spCourse"
+                    android:layout_weight="3"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:id="@+id/editText"
+                    android:text="1100"
+                    android:padding="10dp"
+                    />
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/new_course_gap"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instructor"
-                android:textSize="@dimen/new_course_fontsize"
-                />
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Instructor"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -118,11 +122,33 @@
                 android:text="Classroom"
                 android:textSize="@dimen/new_course_fontsize"
                 />
-
-            <EditText
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                />
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:gravity="center"
+                android:padding="15dp"
+                >
+
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/spClassRoom"
+                    android:layout_weight="3"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:id="@+id/etClass"
+                    android:text="1100"
+                    android:padding="10dp"
+                    />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/new_course_gap"

@@ -26,7 +26,9 @@
         <item>Tamraparani</item>
         <item>Tapti</item>
     </string-array>
+
     <string-array name="slots">
+        <item>Slot</item>
         <item>A</item>
         <item>B</item>
         <item>C</item>
@@ -40,7 +42,16 @@
         <item>R</item>
         <item>S</item>
         <item>T</item>
-        <item>Slot</item>
+    </string-array>
+    <string-array name="classRooms">
+        <item>BSB</item>
+        <item>CRC</item>
+        <item>CS</item>
+        <item>HSB</item>
+        <item>ED</item>
+        <item>ESB</item>
+        <item>MSB</item>
+        <item>OE</item>
     </string-array>
 
     <string name="title_activity_test">TestActivity</string>

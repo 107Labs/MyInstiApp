@@ -1,17 +1,36 @@
 package in.aqel.myinstiapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
 public class NewCourse extends ActionBarActivity {
+    Spinner spClassRoom, spSlot, spCourse, spIsTheory;
+    ArrayAdapter<String> adapterSlot, adapterIsTheoy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_course);
+        initialize();
+        spSlot.setAdapter(adapterSlot);
+        spIsTheory.setAdapter(adapterIsTheoy);
+    }
+
+    private void initialize() {
+        spClassRoom = (Spinner) findViewById(R.id.spClassRoom);
+        spSlot = (Spinner) findViewById(R.id.spSlot);
+        spCourse = (Spinner) findViewById(R.id.spCourse);
+        String[] array = getResources().getStringArray(R.array.slots);
+        adapterSlot = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array);
+        spIsTheory = (Spinner) findViewById(R.id.spIsTheory);
+        String[] arrayIsTheory = {"Theory", "Lab"};
+        adapterIsTheoy = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayIsTheory);
+
     }
 
 

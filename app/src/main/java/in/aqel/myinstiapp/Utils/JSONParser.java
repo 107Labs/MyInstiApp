@@ -1,4 +1,4 @@
-package in.aqel.myinstiapp;
+package in.aqel.myinstiapp.Utils;
 
 /**
  * Created by aqel on 13/1/15.

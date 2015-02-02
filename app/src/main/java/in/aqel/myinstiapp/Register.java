@@ -25,6 +25,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.aqel.myinstiapp.Utils.JSONParser;
+import in.aqel.myinstiapp.Utils.User;
+import in.aqel.myinstiapp.Utils.Utils;
 
 public class Register extends ActionBarActivity  {
 
