@@ -20,4 +20,8 @@ public class Constants {
             "GN", "HM", "HS","ID", "MA", "ME", "MM", "MS","MT", "NA", "OE" ,"PE", "PH", "WS"
 
     };
+
+    public static String[] buildings = {
+            "BSB", "CRC", "CS", "HSB", "ED", "ESB", "MSB", "OE"
+    };
 }

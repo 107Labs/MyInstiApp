@@ -22,42 +22,6 @@
             android:padding="10dp"
             >
 
-
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/spSlot" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/new_course_gap"
-                />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/spIsTheory" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/new_course_gap"
-                />
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="1"
-                android:hint="Credit"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/new_course_gap"
-                />
-
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,6 +70,40 @@
                 android:layout_height="@dimen/new_course_gap"
                 />
 
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spSlot" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spIsTheory" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/new_course_gap"
+                />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="1"
+                android:hint="Credit"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/new_course_gap"
+                />
+
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,12 +137,13 @@
                     />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="3"
+                    android:text="1"
+                    android:gravity="center"
                     android:id="@+id/etClass"
-                    android:text="1100"
                     android:padding="10dp"
                     />
             </LinearLayout>
@@ -153,6 +152,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/new_course_gap"
                 />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/button2"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>
 
