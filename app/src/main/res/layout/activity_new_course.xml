@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Course Title"
+                android:id="@+id/etTitle"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -60,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:id="@+id/editText"
+                    android:id="@+id/etCourse"
                     android:text="1100"
                     android:padding="10dp"
                     />
@@ -97,6 +98,8 @@
                 android:inputType="number"
                 android:maxLength="1"
                 android:hint="Credit"
+                android:id="@+id/etCredits"
+
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -108,6 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Instructor"
+                android:id="@+id/etProf"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -141,7 +145,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:text="1"
                     android:gravity="center"
                     android:id="@+id/etClass"
                     android:padding="10dp"
@@ -156,8 +159,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button2"
+                android:text="Next"
+                android:id="@+id/bNext"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>

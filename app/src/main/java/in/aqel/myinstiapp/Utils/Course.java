@@ -9,6 +9,7 @@ public class Course {
     Boolean isTheory;
 
     public String getNumber() {
+
         return number;
     }
 
