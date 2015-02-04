@@ -1,5 +1,7 @@
 package in.aqel.myinstiapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -28,6 +30,7 @@ public class NewCourse extends ActionBarActivity {
     Boolean validArgs;
     DatabaseHelper data;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,15 @@ public class NewCourse extends ActionBarActivity {
                     data.open();
                     data.addCourse(course);
                     data.close();
+                    SharedPreferences spLogin = getSharedPreferences("login", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = spLogin.edit();
+                    editor.putInt("loginStatus", 1);
+                    editor.commit();
+                    Intent intent = new Intent(NewCourse.this, ViewCourses.class);
+                    startActivity(intent);
+                    finish();
+                    System.exit(0);
+
                 }else{
                     Toast.makeText(NewCourse.this, "Fill every fieldS", Toast.LENGTH_SHORT);
                 }

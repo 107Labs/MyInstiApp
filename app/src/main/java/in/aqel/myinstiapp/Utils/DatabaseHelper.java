@@ -3,6 +3,7 @@ package in.aqel.myinstiapp.Utils;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -20,10 +21,14 @@ public class DatabaseHelper {
     public static final String KEY_SLOT = "slot";
     public static final String KEY_CREDITS = "credits";
     public static final String KEY_ISTHEORY = "isTheory";
+    public static final String KEY_BUNKS = "bunks";
+
+    String[] columns = new String[] {KEY_ROWID, KEY_NUMBER, KEY_TITLE, KEY_CLASSROOM, KEY_INSTRUCTOR, KEY_SLOT,
+            KEY_CREDITS, KEY_ISTHEORY, KEY_BUNKS};
 
 
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private DbHelper ourHelper;
     private final Context ourContext;
@@ -44,8 +49,9 @@ public class DatabaseHelper {
                             + KEY_TITLE + " TEXT NOT NULL  , "
                             + KEY_CLASSROOM + " TEXT NOT NULL , " + KEY_INSTRUCTOR +
                             " TEXT , " + KEY_SLOT + " TEXT NOT NULL, " + KEY_CREDITS +
-                            " INTEGER NOT NULL , " +  KEY_ISTHEORY +
-                            " INTEGER NOT NULL " +
+                            " INTEGER NOT NULL , " +
+                            KEY_ISTHEORY +" INTEGER NOT NULL , " +
+                            KEY_BUNKS +" INTEGER NOT NULL " +
                             " );"
             );
 
@@ -90,12 +96,22 @@ public class DatabaseHelper {
         }else {
             cv.put(KEY_ISTHEORY, 0);
         }
+        cv.put(KEY_BUNKS, 0);
         long id = ourDatabase.insert(DATABASE_TABLE, null, cv);
         Log.d("id of the added", Long.toString(id));
         return id;
     }
 
+    public Cursor getAllCourses () {
+        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, KEY_SLOT + " ASC");
+        return c;
+    }
 
+    public void incrementBunks(int id, int bunks){
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_BUNKS, bunks);
+        ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID+"="+id, null);
+    }
 
  /*   public Cursor getCardById (int id) {
         String[] columns = new String[] {KEY_ROWID, KEY_URL, KEY_TAG, KEY_QCFLAG, KEY_KEYSPACE, KEY_TRUTH, KEY_ANSWERED_OR_NOT, KEY_IMAGE};

@@ -52,6 +52,12 @@ public class Register extends ActionBarActivity  {
             startActivity(intent);
             finish();
             System.exit(0);
+        } else if (loginStatus == 1){
+            intent = new Intent(this, ViewCourses.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
         }
         setContentView(R.layout.activity_register);
         hostels = (Spinner) findViewById(R.id.spinner);
